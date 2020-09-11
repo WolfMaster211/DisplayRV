@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Display Property</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+    const $element = $('.eye-animation');
+    const imagePath = '/images';
+    const totalFrames = 18;
+    const animationDuration = 1300;
+    const timePerFrame = animationDuration / totalFrames;
+    let timeWhenLastUpdate;
+    let timeFromLastUpdate;
+    let frameNumber = 1;
+
+    function step(startTime) {
+        if (!timeWhenLastUpdate) timeWhenLastUpdate = startTime;
+
+    timeFromLastUpdate = startTime - timeWhenLastUpdate;
+
+    if (timeFromLastUpdate > timePerFrame) {
+        $element.attr('src', imagePath + `/Eye-${frameNumber}.svg`);
+        timeWhenLastUpdate = startTime;
+
+    if (frameNumber >= totalFrames) {
+      frameNumber = 1;
+    } else {
+       frameNumber = frameNumber + 1;
+    }        
+  }
+
+  requestAnimationFrame(step);
+}
+    </script>
+</head>
+<body>
+    
+    <div class="mainDiv">
+        <div class="red"><p>Lorem ipsum dolor sit amet consectetur.</p></div>
+        <div class="yellow"><p>Lorem ipsum dolor sit amet consectetur.</p></div>
+        <div class="green"><p>Lorem ipsum dolor sit amet consectetur.</p></div>
+    </div>
+
+    <div class="HeadFallOff"></div>
+</body>
+</html>
